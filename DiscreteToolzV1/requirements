@@ -1,0 +1,85 @@
+using System;
+using MODUL5_103022400095;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("MODUL 5 KONTRUKSI PERANGKAT LUNAK");
+
+        // Pemrosesan Data
+        PemrosesanData data = new PemrosesanData();
+        data.DapatkanNilaiTerbesar(10, 30, 22);
+
+        Console.WriteLine();
+
+        // Simple Database
+        SimpleDataBase<int> db = new SimpleDataBase<int>();
+        db.AddData(12);
+        db.AddData(34);
+        db.AddData(56);
+        db.PrintData();
+    }
+}
+
+
+using System;
+
+namespace MODUL5_103022400095
+{
+    public class PemrosesanData
+    {
+        public T DapatkanNilaiTerbesar<T>(T a, T b, T c) where T : IComparable
+        {
+            T maks = a;
+
+            if (b.CompareTo(maks) > 0)
+            {
+                maks = b;
+            }
+
+            if (c.CompareTo(maks) > 0)
+            {
+                maks = c;
+            }
+
+            Console.WriteLine("Nilai terbesar adalah: " + maks);
+            return maks;
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+
+namespace MODUL5_103022400095
+{
+    public class SimpleDataBase<T>
+    {
+        private List<T> storedData;
+        private List<DateTime> inputDates;
+
+        public SimpleDataBase()
+        {
+            storedData = new List<T>();
+            inputDates = new List<DateTime>();
+        }
+
+        public void AddData(T data)
+        {
+            storedData.Add(data);
+            inputDates.Add(DateTime.Now);
+        }
+
+        public void PrintData()
+        {
+            for (int i = 0; i < storedData.Count; i++)
+            {
+                Console.WriteLine(
+                    $"Data {i + 1} berisi: {storedData[i]}, disimpan pada: {inputDates[i]}"
+                );
+            }
+        }
+    }
+}
